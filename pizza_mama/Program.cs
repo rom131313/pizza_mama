@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using pizza_mama.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 //    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+.AddCookie(options =>
+{
+    options.LoginPath = "/Admin";
+});
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddRazorPages();
 
@@ -43,6 +52,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
