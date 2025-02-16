@@ -2,13 +2,13 @@
 @model pizza_mama.Pages.Admin.Pizzas.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Administration des Pizzas";
 }
 
-<h1>Index</h1>
+<h1>@ViewData["Title"]</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Nouveau</a>
 </p>
 <table class="table">
     <thead>
@@ -32,7 +32,8 @@
 @foreach (var item in Model.Pizza) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.nom)
+                @* @Html.DisplayFor(modelItem => item.nom) *@
+                @item.nom
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.prix)

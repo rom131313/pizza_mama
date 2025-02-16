@@ -48,7 +48,8 @@ namespace pizza_mama.Pages.Admin.Pizzas
                 return Page();
             }
 
-            _context.Attach(Pizza).State = EntityState.Modified;
+            //_context.Attach(Pizza).State = EntityState.Modified;
+            _context.Update(Pizza);
 
             try
             {
