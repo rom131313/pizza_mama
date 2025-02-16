@@ -45,9 +45,9 @@
                 @Html.DisplayFor(modelItem => item.ingredients)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.PizzaId">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.PizzaId">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.PizzaId">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.PizzaId">Editer</a> |
+                @* <a asp-page="./Details" asp-route-id="@item.PizzaId">Details</a> | *@
+                <a asp-page="./Delete" asp-route-id="@item.PizzaId">Supprimer</a>
             </td>
         </tr>
 }
