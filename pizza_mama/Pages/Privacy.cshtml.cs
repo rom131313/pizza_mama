@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using pizza_mama.Data;
 using pizza_mama.Models;
 
@@ -7,26 +6,36 @@ namespace pizza_mama.Pages
 {
     public class PrivacyModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
-        DataContext dataContext;
+        private readonly DataContext _dataContext;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger, DataContext datacontext)
+        public string Message { get; set; } = "Aucune action effectuée."; // Variable pour stocker le message
+
+        public PrivacyModel(DataContext dataContext)
         {
-            _logger = logger;
-            this.dataContext = datacontext;
+            _dataContext = dataContext;
         }
 
         public void OnGet()
         {
-            var pizza = new Pizza() { nom = "PizzaTest", prix = 5 };
-            dataContext.Pizzas.Add(pizza);
-            dataContext.SaveChanges();
+            var pizza = new Pizza
+            {
+                nom = "PizzaTest",
+                prix = 5.0f,
+                vegetarienne = false,
+                ingredients = "Tomate, Fromage"
+            };
 
-            // Vérifie si l'insertion a réussi
-            var pizzas = dataContext.Pizzas.ToList();
-            Console.WriteLine($"Nombre de pizzas en base : {pizzas.Count}");
+            _dataContext.Pizzas.Add(pizza);
+            int changes = _dataContext.SaveChanges();
 
+            if (changes > 0)
+            {
+                Message = "✅ Pizza ajoutée avec succès !";
+            }
+            else
+            {
+                Message = "❌ ERREUR : Aucune pizza ajoutée !";
+            }
         }
     }
-
 }
