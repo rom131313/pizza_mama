@@ -8,7 +8,11 @@ namespace pizza_mama.Pages.Admin
 {
     public class IndexModel : PageModel
     {
-        public async Task<IActionResult> OnGetAsync(string username, string password, string ReturnUrl)
+        public void onGet()
+        {
+           
+        }
+        public async Task<IActionResult> OnPostAsync(string username, string password, string ReturnUrl)
         {
             if (username == "admin")
             {

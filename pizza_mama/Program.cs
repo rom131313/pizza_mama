@@ -13,7 +13,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 .AddCookie(options =>
 {
-    options.LoginPath = "/Admin";
+    options.LoginPath = "/Admin/Index";
 });
 
 builder.Services.AddAuthorization();
