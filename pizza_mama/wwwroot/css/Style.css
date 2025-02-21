@@ -9,3 +9,8 @@ body {
     -o-background-size: cover;
     background-size: cover;
 }
+
+#small_logo {
+    margin-left: 35px;
+    margin-top: 25px;
+}
