@@ -20,6 +20,7 @@ namespace pizza_mama.Pages
         public async Task OnGetAsync()
         {
             Pizza = await _context.Pizzas.ToListAsync();
+            Pizza = Pizza.OrderBy(p => p.prix).ToList();
         }
         //public void OnGet()
         //{
