@@ -10,6 +10,7 @@ body {
     background-size: cover;
     font-family: Arial;
     margin:0px;
+    color:white;
 }
 
 #small_logo {
@@ -27,5 +28,19 @@ h1 {
 .menu_title {
     margin-top:45px;
     margin-bottom:50px;
+}
+
+.menu_list {
+    margin-left:30px;
+
+}
+
+.menu_list_item{
+    font-size:20px;
+    margin:30px 0px;
+}
+
+.menu_list_title{
+    font-weight: bold;
 }
 

@@ -19,12 +19,14 @@
         @* <a asp-page="Index">Retour à l'accueil</a> *@
     </div>
 
-    <ul>
+    <div class="menu_list">
         @foreach (var pizza in Model.Pizza)
         {
-            <li>@pizza.nom - @pizza.prix €</li>
+            <div class="menu_list_item">
+                <span class="menu_list_title">@pizza.nom</span>
+            </div>
         }
-    </ul>
+    </div>
     
     </body>
 </html>
