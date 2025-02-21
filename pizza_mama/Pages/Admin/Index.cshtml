@@ -5,7 +5,12 @@
 
 <h1>Vous devez vous authentifer</h1>
 
-<br />
+@if (Model.DisplayInvalidAccountMessage){
+    <br />
+    <div class="alert alert-danger" role="alert">
+        ERREUR : Ce compte est invalide
+    </div>
+} 
 
 <form method="post">
     <input type="text" name="username" placeholder="Login"><br /><br />

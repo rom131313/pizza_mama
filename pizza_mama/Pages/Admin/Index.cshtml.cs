@@ -8,6 +8,12 @@ namespace pizza_mama.Pages.Admin
 {
     public class IndexModel : PageModel
     {
+        public bool DisplayInvalidAccountMessage = false;
+        IConfiguration configuration;
+        public IndexModel(IConfiguration configuration)
+        {
+            this.configuration = configuration;
+        }
         public IActionResult OnGet()
         {
            if (HttpContext.User.Identity.IsAuthenticated)
@@ -18,8 +24,12 @@ namespace pizza_mama.Pages.Admin
         }
         public async Task<IActionResult> OnPostAsync(string username, string password, string ReturnUrl)
         {
-            if (username == "admin")
+            var authSection = configuration.GetSection("Auth");
+            string adminLogin = authSection["AdminLogin"];
+            string adminPassword = authSection["AdminPassword"];
+            if ((username == adminLogin) && (password == adminPassword))
             {
+                DisplayInvalidAccountMessage = false;
                 var claims = new List<Claim> {
                  new Claim(ClaimTypes.Name, username)
                  };
@@ -29,6 +39,7 @@ namespace pizza_mama.Pages.Admin
                 return Redirect(ReturnUrl == null ? "/Admin/Pizzas" : ReturnUrl);
             }
 
+            DisplayInvalidAccountMessage = true;
             return Page();
         }
 
